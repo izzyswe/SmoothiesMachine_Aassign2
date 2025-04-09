@@ -1,5 +1,4 @@
-//getting the submit button
-const submitButton = document.getElementById("submit-button");
+
 // Smoothie class
 class SmoothieIngredient {
   /*creating a nested key-value pair for the fruit prices
