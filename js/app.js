@@ -143,6 +143,7 @@ function displaySmoothieSummary(name, summaryText) {
   summaryDiv.appendChild(nameHeading);
   // Create and add the order details
   const summaryBlock = document.createElement("pre"); // to keep line breaks
+  summaryBlock.style.whiteSpace = "pre-wrap"; // to wrap text
   summaryBlock.innerText = summaryText;
   summaryDiv.appendChild(summaryBlock);
 }
