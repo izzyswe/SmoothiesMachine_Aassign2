@@ -9,14 +9,40 @@
   </head>
   <body>
     <header>
+      <img src="./img/Logo.png" alt="Smoothie">
       <h1>Smoochie's Smoothie</h1>
-      <nav>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </nav>
     </header>
+    <main>
+      <h2>Welcome to Smoochie's Smoothie</h2>
+      <p>We offer a variety of smoothies to suit your taste!</p>
+      <form id="smoothieForm">
+        <fieldset>
+          <legend>Choose your fruits:</legend>
+          <label><input type="checkbox" value="Banana"> Banana</label>
+          <label><input type="checkbox" value="Matcha"> Matcha</label> 
+          <label><input type="checkbox" value="Strawberry"> Strawberry</label>
+          <label><input type="checkbox" value="Mango"> Mango</label>
+          <label><input type="checkbox" value="Pineapple"> Pineapple</label>
+          <label><input type="checkbox" value="Blueberry"> Blueberry</label>
+          <label><input type="checkbox" value="WheyProtein"> Whey Protein</label>
+        </fieldset>
+
+        <div>
+          <label for="smoothieName">Smoothie Name:</label>
+          <input type="text" id="smoothieName" placeholder="Enter a name for your smoothie">
+          <label for="size">Choose a size:</label>
+          <select id="size">
+            <option value="Small">Small</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Large">Large</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit">Place Order</button>
+        </div>
+      </form>
+      <div id="orderSummaryContainer">
+        <div id="orderSummary"></div>
+      </div>
   </body>
 </html>
