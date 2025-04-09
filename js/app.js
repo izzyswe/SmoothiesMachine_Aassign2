@@ -1,4 +1,3 @@
-
 // Smoothie class
 class SmoothieIngredient {
   /*creating a nested key-value pair for the fruit prices
@@ -35,8 +34,6 @@ class SmoothieIngredient {
       price: 1.50, 
       calories: 30
     },
-    // as obnoxious as it is to position the objects like this instead of the previous commit
-    // I did it to make it easier to read, even though the other way was just as easy
   };
   //creating a key-value pair for the smoothie size
   size = {
@@ -121,7 +118,7 @@ document.getElementById("smoothieForm").addEventListener("submit", function(even
   for (let box of checkboxes) { // <- iterate through the checkboxes, saying for each box of the checkboxes...
     selectedFruits.push(box.value); // <- push the value of the checkbox into the selectedFruits array (at the end of the array)
   }
-  // 2. Get selected size (capitalize it to match the object key: "Small", "Medium", "Large")
+  // 2. Get selected size (match the object key: "Small", "Medium", "Large")
   const sizeValue = document.getElementById("size").value;
   // 3. Get smoothie name
   const smoothieName = document.getElementById("smoothieName").value;
