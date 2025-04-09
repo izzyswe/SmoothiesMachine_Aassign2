@@ -19,7 +19,20 @@ header img{
   display: block;
   margin: 10px auto;
 }
-
+main h2{
+  text-align: center;
+  font-size: 2em;
+}
+main p{
+  text-align: center;
+  font-size: 1.2em;
+}
+main form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
 main form fieldset{
   /*centering the items inside the fieldset*/
   display: flex;
@@ -29,7 +42,8 @@ main form fieldset{
   border-radius: 10px;
   padding: 20px;
   margin: 20px auto;
-  width: 80%;
+  width: 60%;
+  gap: 30px;
 }
 main form fieldset legend{
   text-align: center;
@@ -82,3 +96,17 @@ main form button{
   border-radius: 5px;
   cursor: pointer;
 }
+
+#orderSummaryContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+#orderSummary{
+text-align: center;
+  border: 1px solid #ddd;
+  padding: 20px;
+  max-width: 400px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);}
