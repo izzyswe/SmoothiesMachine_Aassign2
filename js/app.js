@@ -52,8 +52,23 @@ class SmoothieIngredient {
     this.selectedSize = selectedSize;
   }
 
-  //creating a method to get the smoothie price
+  //creating a method to get the smoothie price,
+  //admittedly, i had the help of chatgpt to get the price of the smoothie
+  //this is the first time, i am trying to utilize objects in the way it is written
   getSmoothiePrice() {
+    //getting the price of the smoothie size, current value is 0, however, it will be updated later
+    totalPrice = 0;
+
+    //we will use a for loop to iterate through the selected fruits using the selectedFruits array
+    //basically this is saying, for every fruit in the selectedFruits array...
+    for(const fruit of this.selectedFruits) { // <- even though the array is empty, it will iterate through the loop when the smoothie is created
+      //we grab the fruit price from the fruitPrices object
+      totalPrice += this.fruitPrices[fruit].price;
+    }
+    //we grab the size price from the size object, each size has a price corresponding to it
+    totalPrice += this.size[this.selectedSize];
+    //we return the total price of the smoothie, using the toFixed method to round the price to 2 decimal places
+    return totalPrice.toFixed(2);
   }
   //creating a method to get the smoothie calories
   getSmoothieCalories() {
