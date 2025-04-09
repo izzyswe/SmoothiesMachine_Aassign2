@@ -117,20 +117,37 @@ document.getElementById("smoothieForm").addEventListener("submit", function(even
   event.preventDefault(); // prevent the form from reloading the page
 
   // 1. Get all checked fruits
-  const checkedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
-  const selectedFruits = Array.from(checkedBoxes).map(cb => cb.value);
-
+  let selectedFruits = []; // <- start with an empty array
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked'); // <- get all checked checkboxes
+  for (let box of checkboxes) { // <- iterate through the checkboxes, saying for each box of the checkboxes...
+    selectedFruits.push(box.value); // <- push the value of the checkbox into the selectedFruits array (at the end of the array)
+  }
   // 2. Get selected size (capitalize it to match the object key: "Small", "Medium", "Large")
-  const selectedSizeValue = document.getElementById("size").value;
-  const selectedSize = selectedSizeValue.charAt(0).toUpperCase() + selectedSizeValue.slice(1);
-
+  const sizeValue = document.getElementById("size").value;
+  // 3. Get smoothie name
+  const smoothieName = document.getElementById("smoothieName").value;
   // 3. Create smoothie object
-  const smoothie = new SmoothieIngredient(selectedFruits, selectedSize);
-
+  const smoothie = new SmoothieIngredient(selectedFruits, sizeValue);
   // 4. Get order summary string
   const summary = smoothie.getOrderDetails();
 
-  // 5. Display it in the div
-  document.getElementById("orderSummary").innerText = summary;
+  displaySmoothieSummary(smoothieName, summary);
 });
+
+//creating a function to generate the smoothie Name
+function displaySmoothieSummary(name, summaryText) {
+  const summaryDiv = document.getElementById("orderSummary");
+  // Clear previous content
+  summaryDiv.innerHTML = "";
+  // If name is blank or only spaces, use default
+  const smoothieName = name.trim() === "" ? "My Smoothie" : name;
+  // Create and add the heading
+  const nameHeading = document.createElement("h2");
+  nameHeading.innerText = smoothieName;
+  summaryDiv.appendChild(nameHeading);
+  // Create and add the order details
+  const summaryBlock = document.createElement("pre"); // to keep line breaks
+  summaryBlock.innerText = summaryText;
+  summaryDiv.appendChild(summaryBlock);
+}
 
