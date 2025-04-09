@@ -1,3 +1,5 @@
+//getting the submit button
+const submitButton = document.getElementById("submit-button");
 // Smoothie class
 class SmoothieIngredient {
   /*creating a nested key-value pair for the fruit prices
@@ -57,7 +59,7 @@ class SmoothieIngredient {
   //this is the first time, i am trying to utilize objects in the way it is written
   getSmoothiePrice() {
     //getting the price of the smoothie size, current value is 0, however, it will be updated later
-    totalPrice = 0;
+    let totalPrice = 0;
 
     //we will use a for loop to iterate through the selected fruits using the selectedFruits array
     //basically this is saying, for every fruit in the selectedFruits array...
@@ -72,24 +74,63 @@ class SmoothieIngredient {
   }
   //creating a method to get the smoothie calories
   getSmoothieCalories() {
+    //initializing the totalCalories variable to 0, because there is no fruit
+    let totalCalories = 0;
+
+    //we will use a for loop to iterate through the selected fruits using the selectedFruits array
+    //basically this is saying, for every fruit in the selectedFruits array...
+    for(const fruit of this.selectedFruits) { // <- even though the array is empty, it will iterate through the loop when the smoothie is created
+      //we grab the fruit calories from the fruitPrices object
+      totalCalories += this.fruitPrices[fruit].calories;
+    }
+
+    //we will return the total calories of the smoothie
+    return totalCalories;
   }
   //creating a method to get the smoothie size
   getSmoothieSize() {
+    //we will return the size of the smoothie
+    return this.selectedSize;
   }
   //creating a method to get the smoothie ingredients
   getSmoothieIngredients() {
+    //we will return the selected fruits of the smoothie
+    return this.selectedFruits.join(", ");
   }
 
   //order details
   getOrderDetails() {
     return `Your smoothie Details \n
-            Size: ${this.getSmoothieSize} cup \n
-            Fruits ${this.getSmoothieIngredients} \n
-            Calories: ${this.getSmoothieCalories} \n
+            Size: ${this.getSmoothieSize()} cup \n
+            Fruits: ${this.getSmoothieIngredients()} \n
+            Calories: ${this.getSmoothieCalories()} \n
             ______________________________\n
             Total: \n
-            $${this.getSmoothiePrice}`;
+            $${this.getSmoothiePrice()}`;
   }
 }
 
+//creating a function to create the smoothie
+//this function will be called when the user clicks the button
+
+document.getElementById("smoothieForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // prevent the form from reloading the page
+
+  // 1. Get all checked fruits
+  const checkedBoxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  const selectedFruits = Array.from(checkedBoxes).map(cb => cb.value);
+
+  // 2. Get selected size (capitalize it to match the object key: "Small", "Medium", "Large")
+  const selectedSizeValue = document.getElementById("size").value;
+  const selectedSize = selectedSizeValue.charAt(0).toUpperCase() + selectedSizeValue.slice(1);
+
+  // 3. Create smoothie object
+  const smoothie = new SmoothieIngredient(selectedFruits, selectedSize);
+
+  // 4. Get order summary string
+  const summary = smoothie.getOrderDetails();
+
+  // 5. Display it in the div
+  document.getElementById("orderSummary").innerText = summary;
+});
 
